@@ -42,8 +42,9 @@ return (
       fontWeight: 'bold',
     }}
   >
-    {renderName && <h3>{name}</h3>}
-    <div>{value}</div>
+    {
+      renderName ? <div><div>{name}</div><div>{value}</div></div>: <div>{value}</div>
+    }
   </div>
   </AnimatedView>
 )}}

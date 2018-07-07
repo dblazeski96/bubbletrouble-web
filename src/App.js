@@ -149,7 +149,7 @@ class App extends Component {
         />
         {/* Second level left subs elements
         First */}
-        <CircleLabel value='extra1' top={MAIN_TOP - 180} left={MAIN_LEFT + 30}  />
+        <CircleLabel value='extra1' top={MAIN_TOP - 180 + 20} left={MAIN_LEFT + 30 - 50} />
        <Circle
           value={16} 
           radius={RADIUS * (0.01  * 16)} 
@@ -158,24 +158,24 @@ class App extends Component {
           color={SECOUND_LEVEL_COLOR} animationDelay={SECOUND_LEVEL_DELAY}
           // renderName = {true}
         />
+        <CircleLabel value='extra2' top={MAIN_TOP - 120 + 10} left={MAIN_LEFT - 10 - 50} />
         <Circle 
-          name='extra2'
           value={12} 
           radius={RADIUS * (0.01  * 12)} 
           top={MAIN_TOP - 120} 
           left={MAIN_LEFT - 10} 
           color={SECOUND_LEVEL_COLOR} animationDelay={SECOUND_LEVEL_DELAY}
         />
+        <CircleLabel value='extra3' top={MAIN_TOP - 50 + 10} left={MAIN_LEFT - 20 - 50} />
         <Circle 
-          name='extra3'
           value={10} 
           radius={RADIUS * (0.01  * 10)} 
           top={MAIN_TOP - 50} 
           left={MAIN_LEFT - 20} 
           color={SECOUND_LEVEL_COLOR} animationDelay={SECOUND_LEVEL_DELAY}
         />
+        <CircleLabel value='extra4' top={MAIN_TOP + 15 + 10} left={MAIN_LEFT - 10 - 50} />
         <Circle 
-          name='extra4'
           value={10} 
           radius={RADIUS * (0.01  * 10)} 
           top={MAIN_TOP + 15} 
