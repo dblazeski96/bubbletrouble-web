@@ -1,14 +1,13 @@
 import React, {Component} from 'react'
 import posed from 'react-pose'
 
-
-const AnimatedView = posed.div({
+const AnimatedView1 = posed.div({
   unMounted: {scale:0, duration: 1000000},
   mounted: {scale:1, duration: 1000000 },
 })
 
 
-class Circle extends Component
+class CircleLabel extends Component
 {
   state = { mounted: false };
   
@@ -20,32 +19,26 @@ class Circle extends Component
   }
 
   render()  {
-   const { name, value, radius, top, left, color = 'red', renderName = true} = this.props;
+   const { value, top, left } = this.props;
    const {mounted} =this.state
 return (
-  <AnimatedView pose={mounted ? 'mounted' : 'unMounted'}>
+  <AnimatedView1 pose={mounted ? 'mounted' : 'unMounted'}>
   <div
     style={{
       display: 'flex',
-      flexDirection: 'column',
       position: 'absolute',
       justifyContent: 'center',
       textAlign: 'center',
       alignItems: 'center',
-      height: radius * 2,
-      width: radius * 2,
-      borderRadius: radius,
       top,
       left,
-      background: color,
       color: 'white',
       fontWeight: 'bold',
     }}
   >
-    {renderName && <h3>{name}</h3>}
     <div>{value}</div>
   </div>
-  </AnimatedView>
+  </AnimatedView1>
 )}}
 
-export default Circle
+export default CircleLabel

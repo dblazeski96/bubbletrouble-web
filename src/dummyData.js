@@ -1,10 +1,10 @@
 export default {
     income: {
-      name: 'Вкупни Приходи',
+      name: 'Приходи',
       value: 217700000
     },
     expenses: {
-      name: 'Вкупни Расходи',
+      name: 'Расходи',
       value: 193500000
     },
     deficit: {
@@ -14,9 +14,9 @@ export default {
     incomeData: [
       { name: 'Даноци', value: 114 },
       { name: 'Социјални придонеси', value: 55 },
+      { name: 'Дефицит', value: 18.2 },
       { name: 'Неданочни приходи', value: 17 },
-      { name: 'Капитални Приходи и друго', value: 6.1 },
-      { name: 'Дефицит', value: 18200000 }
+      { name: 'Капитални Приходи и друго', value: 6.1 }
     ],
     expensesData: [
       { name: 'Пензии и социјално', value: 75 },
