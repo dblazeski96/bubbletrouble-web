@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import React, { Component } from 'react';
 import { Line } from 'react-lineto'
 import './App.css';
@@ -17,11 +18,47 @@ const ZERO_LEVEL_DELAY = 100
 const FIRST_LEVEL_DELAY = 400
 const SECOUND_LEVEL_DELAY = 600
 
+
+import ImportantProjects from './screens/ImportantProjects'
+import { library } from '@fortawesome/fontawesome-svg-core'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { fab } from '@fortawesome/free-brands-svg-icons'
+import {
+  faCheckSquare,
+  faCoffee,
+  faHospital,
+  faBroadcastTower,
+  faHandHoldingUsd,
+  faBuilding,
+  faBus,
+  faLongArrowAltUp,
+  faHandsHelping,
+  faBriefcase
+} from '@fortawesome/free-solid-svg-icons'
+import Plan from './component/Plan'
+import Hints from './screens/Hints'
+import Comparation from './screens/Comparation'
+
+library.add(
+  fab,
+  faCheckSquare,
+  faCoffee,
+  faHospital,
+  faBroadcastTower,
+  faHandHoldingUsd,
+  faBuilding,
+  faBus,
+  faLongArrowAltUp,
+  faHandsHelping,
+  faBriefcase
+)
+>>>>>>> 23ece653ada1d4ec4e94c7169d70e3911f000ef1
 class App extends Component {
   render() {
     return (
   
       <div>
+<<<<<<< HEAD
         <Line 
           x0={MAIN_LEFT + 30 + 50} 
           y0={MAIN_TOP - 180 + 58} 
