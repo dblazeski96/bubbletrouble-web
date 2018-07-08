@@ -1,11 +1,9 @@
 import React, { Component } from 'react'
-import { Line } from 'react-lineto'
 import './App.css'
 
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { fab } from '@fortawesome/free-brands-svg-icons'
-import Plan from './component/Plan'
 import Hints from './screens/Hints'
 import Comparation from './screens/Comparation'
 import ImportantProjects from './screens/ImportantProjects'
@@ -22,8 +20,6 @@ import {
   faBriefcase
 } from '@fortawesome/free-solid-svg-icons'
 import dummyData from './dummyData'
-import Circle from './component/Circle'
-import CircleLabel from './component/CircleLabel'
 import Landing from './screens/Landing'
 import LandingSegment from './screens/LandingSegment'
 import colors from './colors'
