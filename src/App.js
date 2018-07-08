@@ -92,13 +92,15 @@ class App extends Component {
               style={{
                 display: 'flex',
                 flexDirection: 'row',
-                backgroundColor: 'rgb(17, 41, 74)'
+                backgroundColor: 'rgb(17, 41, 74)',
+                // width: 1000
               }}
             >
               <div
                 style={{
                   padding: 16,
-                  flex: 1,
+                  // flex: 1,
+                  width: 400,
                   alignItems: 'center',
                   display: 'flex',
                   justifyContent: 'flex-end'
@@ -131,19 +133,23 @@ class App extends Component {
               style={{
                 display: 'flex',
                 flexDirection: 'row',
-                backgroundColor: colors.primary.expenses
+                backgroundColor: colors.primary.expenses,
               }}
             >
-              <LandingSegment />,
+              <LandingSegment  color={selectedIncome ? '#081323' : 'rgb(36, 11, 58)'}
+                data={
+                  selectedIncome ? dummyData.incomeData : dummyData.expensesData
+                } />,
               <div
                 style={{
                   padding: 16,
-                  flex: 1,
+                  // flex: 1,
                   alignItems: 'center',
                   display: 'flex',
                   justifyContent: 'flex-start',
                   backgroundColor: colors.primary.expensesDark,
-                  color: 'rgb(0, 174, 241)'
+                  color: 'rgb(0, 174, 241)',
+                  width: 400
                 }}
                 // onClick={onExpenses}
               >

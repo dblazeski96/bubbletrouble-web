@@ -1,12 +1,15 @@
-import React from 'react'
+import React, {Component} from 'react'
 import dummyData from '../dummyData'
+import BarDetails from './BarDetails'
 
 const MAX = Math.max(dummyData.income.value, dummyData.expenses.value)
 
-const Item = ({ name, value }) => (
-  <div style={{ padding: 16 }}>
-    <h3 style={{ textAlign: 'center', color: 'rgb(229, 1, 126)' }}>{name}</h3>
-    <h6 style={{ justifyContent: 'center', display: 'flex', color: 'white' }}>
+const Item = ({ name, value, handleClick }) => (
+  <div style={{ padding: 16 }} 
+    // onMouseEnter={}
+    onClick={handleClick} >
+    <h3 style={{ textAlign: 'center', color: 'rgb(229, 1, 126)', height: 70, fontSize: 20}}>{name}</h3>
+    <h6 style={{ justifyContent: 'center', display: 'flex', color: 'white', fontSize: 26  }}>
       {value}
       {'  '}
       <div
@@ -14,7 +17,8 @@ const Item = ({ name, value }) => (
           display: 'inline',
           color: 'lightgray',
           fontStyle: 'italic',
-          paddingLeft: 10
+          paddingLeft: 10,
+          fontSize: 16
         }}
       >
         {' '}
@@ -24,44 +28,19 @@ const Item = ({ name, value }) => (
   </div>
 )
 
-const LandingSegment = ({
-  data = [
-    { name: 'Пензии и социјално', value: 75 },
-    { name: 'Економски Развој', value: 43 },
-    { name: 'Здраство', value: 32 },
-    {
-      name: 'Образование, наука и спорт',
-      value: 26
-    },
-    {
-      name: 'Јавен ред',
-      value: 12
-    },
-    { name: 'Градежништво и транспорт', value: 10 },
-    { name: 'Земјоделство', value: 10 },
-    { name: 'Одбрана', value: 7 },
-    {
-      name: 'Надворешни работи',
-      value: 5
-    },
-    {
-      name: 'Култура',
-      value: 4
-    },
-    {
-      name: 'Регионален развој',
-      value: 2
-    },
-    { name: 'Судство', value: 2 }
-  ],
-  color = 'rgb(17, 41, 74)',
-  textColor
+const Items = ({
+  data,
+  color,
+  textColor,
+  onClick
 }) => (
   <div
     style={{
       display: 'flex',
       backgroundColor: color,
-      flexDirection: 'row'
+      flexDirection: 'row',
+      width: window.innerWidth,
+      justifyContent: 'center'
     }}
   >
     <div
@@ -73,7 +52,7 @@ const LandingSegment = ({
         justifyContent: 'center'
       }}
     >
-      {data.map(e => <Item name={e.name} value={e.value} />)}
+      {data.map(e => <Item name={e.name} value={e.value} handleClick={onClick} />)}
     </div>
   </div>
 )
@@ -106,4 +85,16 @@ const styles = {
   }
 }
 
-export default LandingSegment
+class Segment extends Component {
+  state = {
+    showDetails: false
+  }
+
+  render() {
+    return(
+      this.state.showDetails ? <BarDetails/> : <Items {...this.props} onClick={() => {this.setState({showDetails:true})}}/>
+    )
+  }
+}
+
+export default Segment
