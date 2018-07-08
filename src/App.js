@@ -1,7 +1,6 @@
-import React, { Component } from 'react';
+import React, { Component } from 'react'
 import { Line } from 'react-lineto'
-import './App.css';
-
+import './App.css'
 
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
@@ -25,16 +24,39 @@ import {
 import dummyData from './dummyData'
 import Circle from './component/Circle'
 import CircleLabel from './component/CircleLabel'
+import Landing from './screens/Landing'
+import LandingSegment from './screens/LandingSegment'
+import colors from './colors'
 
-const RADIUS = 200
-const MAIN_TOP = window.innerHeight/1.8 - RADIUS
-const MAIN_LEFT = window.innerWidth/2 - RADIUS
-const ZERO_LEVEL_COLOR = 'radial-gradient(#b3b3ff, #0000cc )'
-const FIRST_LEVEL_COLOR =  'linear-gradient(to right bottom, #654ea3, #eaafc8)'
-const SECOUND_LEVEL_COLOR = 'linear-gradient(to right bottom, #005AA7, #FFFDE4)'
-const ZERO_LEVEL_DELAY = 100
-const FIRST_LEVEL_DELAY = 400
-const SECOUND_LEVEL_DELAY = 600
+const styles = {
+  barContainer: {
+    margin: 16,
+    height: 320,
+    display: 'flex',
+    flexDirection: 'column'
+  },
+  barTop: {
+    display: 'flex',
+    flex: 1,
+    backgroundColor: 'white',
+    opacity: 0.2
+  }
+}
+
+const MAX = Math.max(dummyData.income.value, dummyData.expenses.value)
+
+const Bar = ({ color, value }) => (
+  <div style={styles.barContainer}>
+    <div style={styles.barTop} />
+    <div
+      style={{
+        height: (value / MAX) * 320,
+        width: 30,
+        backgroundColor: color
+      }}
+    />
+  </div>
+)
 
 library.add(
   fab,
@@ -49,151 +71,113 @@ library.add(
   faHandsHelping,
   faBriefcase
 )
+
 class App extends Component {
+  state = {
+    selectedIncome: null
+  }
+
   render() {
+    const { selectedIncome } = this.state
     return (
       <div>
-      <div style={{height: MAIN_TOP*2 *2}}>
-        <Line 
-          x0={MAIN_LEFT + 30 + 50} 
-          y0={MAIN_TOP - 180 + 58} 
-          x1={MAIN_LEFT + 60 + 50} 
-          y1={MAIN_TOP - 100 + 10} 
-          borderColor='red' 
-          borderStyle='dashed'
-          borderWidth='2px'
-        />
-        <Line 
-          x0={MAIN_LEFT - 10 + 40} 
-          y0={MAIN_TOP - 120 + 35} 
-          x1={MAIN_LEFT + 60 + 15} 
-          y1={MAIN_TOP - 100 + 40} 
-          borderColor='red' 
-          borderStyle='dashed'
-          borderWidth='2px'
-        />
-        <Line 
-          x0={MAIN_LEFT - 20 + 40} 
-          y0={MAIN_TOP - 50 + 20} 
-          x1={MAIN_LEFT + 60 + 0} 
-          y1={MAIN_TOP - 100 + 72} 
-          borderColor='red' 
-          borderStyle='dashed'
-          borderWidth='2px' 
-        />
-        <Line 
-          x0={MAIN_LEFT - 10 + 40} 
-          y0={MAIN_TOP + 15 + 15} 
-          x1={MAIN_LEFT + 60 + 0} 
-          y1={MAIN_TOP - 100 + 115} 
-          borderColor='red' 
-          borderStyle='dashed'
-          borderWidth='2px' 
-        />
-
-        <Circle
-          name={dummyData.income.name} 
-          value={dummyData.income.value} 
-          radius={RADIUS} 
-          top={MAIN_TOP}
-          left={MAIN_LEFT} 
-          color={ZERO_LEVEL_COLOR}
-          animationDelay={ZERO_LEVEL_DELAY}
-        />
-        {/* First level left subs elements
-        Empty */}
-        <Circle
-          name={dummyData.incomeData[0].name} 
-          value={dummyData.incomeData[0].value} 
-          radius={RADIUS * (0.005  * dummyData.incomeData[0].value)} 
-          top={MAIN_TOP + 30} 
-          left={MAIN_LEFT + 300} 
-          color={FIRST_LEVEL_COLOR}
-          animationDelay={FIRST_LEVEL_DELAY}
-        />
-        <Circle
-          name={dummyData.incomeData[1].name} 
-          value={dummyData.incomeData[1].value} 
-          radius={RADIUS * (0.008  * dummyData.incomeData[1].value)} 
-          top={MAIN_TOP - 100} 
-          left={MAIN_LEFT + 60} 
-          color={FIRST_LEVEL_COLOR}
-          animationDelay={FIRST_LEVEL_DELAY}
-        />
-        <Circle
-          name={dummyData.incomeData[2].name} 
-          value={dummyData.incomeData[2].value} 
-          radius={RADIUS * (0.02    * dummyData.incomeData[2].value)} 
-          top={MAIN_TOP + 110} 
-          left={MAIN_LEFT - 90} 
-          animationDelay={FIRST_LEVEL_DELAY}
-          color={FIRST_LEVEL_COLOR}
-        />
-        <Circle 
-          name={dummyData.incomeData[3].name} 
-          value={dummyData.incomeData[3].value} 
-          radius={RADIUS * (0.02  * dummyData.incomeData[3].value)} 
-          top={MAIN_TOP + 310} 
-          left={MAIN_LEFT + 20} 
-          color={FIRST_LEVEL_COLOR}
-          animationDelay={FIRST_LEVEL_DELAY}
-        />
-        <Circle 
-          name={dummyData.incomeData[4].name} 
-          value={dummyData.incomeData[4].value} 
-          radius={RADIUS * (0.04  * dummyData.incomeData[4].value)} 
-          top={MAIN_TOP + 340} 
-          left={MAIN_LEFT + 250} 
-          color={FIRST_LEVEL_COLOR}
-          animationDelay={FIRST_LEVEL_DELAY}
-        />
-        {/* Second level left subs elements
-        First */}
-        <CircleLabel value='extra1' top={MAIN_TOP - 180 + 20} left={MAIN_LEFT + 30 - 50} />
-       <Circle
-          value={16} 
-          radius={RADIUS * (0.01  * 16)} 
-          top={MAIN_TOP - 180} 
-          left={MAIN_LEFT + 30} 
-          color={SECOUND_LEVEL_COLOR} animationDelay={SECOUND_LEVEL_DELAY}
-          // renderName = {true}
-        />
-        <CircleLabel value='extra2' top={MAIN_TOP - 120 + 10} left={MAIN_LEFT - 10 - 50} />
-        <Circle 
-          value={12} 
-          radius={RADIUS * (0.01  * 12)} 
-          top={MAIN_TOP - 120} 
-          left={MAIN_LEFT - 10} 
-          color={SECOUND_LEVEL_COLOR} animationDelay={SECOUND_LEVEL_DELAY}
-        />
-        <CircleLabel value='extra3' top={MAIN_TOP - 50 + 10} left={MAIN_LEFT - 20 - 50} />
-        <Circle 
-          value={10} 
-          radius={RADIUS * (0.01  * 10)} 
-          top={MAIN_TOP - 50} 
-          left={MAIN_LEFT - 20} 
-          color={SECOUND_LEVEL_COLOR} animationDelay={SECOUND_LEVEL_DELAY}
-        />
-        <CircleLabel value='extra4' top={MAIN_TOP + 15 + 10} left={MAIN_LEFT - 10 - 50} />
-        <Circle 
-          value={10} 
-          radius={RADIUS * (0.01  * 10)} 
-          top={MAIN_TOP + 15} 
-          left={MAIN_LEFT - 10} 
-          color={SECOUND_LEVEL_COLOR} animationDelay={SECOUND_LEVEL_DELAY}
-        />
-                {/* Second */}
+        <div style={{ backgroundColor: 'white' }}>
+          {selectedIncome === null ? (
+            <Landing
+              onIncome={() => {
+                this.setState({ selectedIncome: true })
+              }}
+              onExpenses={() => {
+                this.setState({ selectedIncome: false })
+              }}
+            />
+          ) : selectedIncome ? (
+            <div
+              style={{
+                display: 'flex',
+                flexDirection: 'row',
+                backgroundColor: 'rgb(17, 41, 74)'
+              }}
+            >
+              <div
+                style={{
+                  padding: 16,
+                  flex: 1,
+                  alignItems: 'center',
+                  display: 'flex',
+                  justifyContent: 'flex-end'
+                }}
+              >
+                <Bar color="rgb(0, 174, 241)" value={dummyData.income.value} />
+                <div style={{ textAlign: 'right' }}>
+                  <h2 style={{ color: 'white' }}>
+                    Приходи
+                    <br />
+                  </h2>
+                  <h1 style={{ color: 'rgb(0, 174, 241' }}>
+                    {dummyData.income.value}{' '}
+                  </h1>
+                  <p style={{ color: 'lightgray', fontStyle: 'italic' }}>
+                    {' '}
+                    милиони{' '}
+                  </p>
+                </div>
+              </div>,
+              <LandingSegment
+                color={selectedIncome ? '#081323' : 'rgb(36, 11, 58)'}
+                data={
+                  selectedIncome ? dummyData.incomeData : dummyData.expensesData
+                }
+              />
+            </div>
+          ) : (
+            <div
+              style={{
+                display: 'flex',
+                flexDirection: 'row',
+                backgroundColor: colors.primary.expenses
+              }}
+            >
+              <LandingSegment />,
+              <div
+                style={{
+                  padding: 16,
+                  flex: 1,
+                  alignItems: 'center',
+                  display: 'flex',
+                  justifyContent: 'flex-start',
+                  backgroundColor: colors.primary.expensesDark,
+                  color: 'rgb(0, 174, 241)'
+                }}
+                // onClick={onExpenses}
+              >
+                <div style={{ textAlign: 'left' }}>
+                  <h2 style={{ color: 'white' }}>
+                    Расходи
+                    <br />
+                  </h2>
+                  <h1 style={{ color: 'rgb(229, 1, 126)' }}>
+                    {dummyData.expenses.value}{' '}
+                  </h1>
+                  <p style={{ color: 'lightgray', fontStyle: 'italic' }}>
+                    {' '}
+                    милиони{' '}
+                  </p>
+                </div>
+                <Bar
+                  color="rgb(229, 1, 126)"
+                  value={dummyData.expenses.value}
+                />
+              </div>
+            </div>
+          )}
+          <Comparation />
+          <Hints />
+          <ImportantProjects />
+        </div>
       </div>
-      <div style={{backgroundColor: 'white'}}>
-        
-        <Comparation/>
-                <Hints />
-                <ImportantProjects/>
-      </div>
-  </div>
-    );
+    )
   }
 }
 
-
-export default App;
+export default App

@@ -1,15 +1,15 @@
 export default {
   income: {
     name: 'Вкупни Приходи',
-    value: 217700000
+    value: 217
   },
   expenses: {
     name: 'Вкупни Расходи',
-    value: 193500000
+    value: 193
   },
   deficit: {
     name: 'Дефицит',
-    value: 18200000
+    value: 18
   },
   incomeData: [
     { name: 'Даноци', value: 114 },
